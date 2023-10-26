@@ -4,6 +4,7 @@ const User = require('../models/user');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const auth = require('../middlewares/Auth')
 // const { JWT_SECRET } = require('../config'); // Store your JWT secret key securely
 
 const JWT_SECRET = "rfhnr4yjn57u57r4nyjr4fyjn";
@@ -60,5 +61,9 @@ router.post('/signin', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+router.get('/proc', auth ,(req, res) =>{
+    res.send("proc")
+})
 
 module.exports = router;
