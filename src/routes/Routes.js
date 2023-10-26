@@ -5,9 +5,9 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const auth = require('../middlewares/Auth')
-// const { JWT_SECRET } = require('../config'); // Store your JWT secret key securely
+require('dotenv').config();
 
-const JWT_SECRET = "rfhnr4yjn57u57r4nyjr4fyjn";
+
 
 router.post('/signup', async (req, res) => {
   try {
@@ -52,7 +52,7 @@ router.post('/signin', async (req, res) => {
     }
 
     // Generate a JSON Web Token (JWT) to authenticate the user
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET);
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
 
     // Respond with the token
     res.json({ token });

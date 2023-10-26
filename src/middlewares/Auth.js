@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = "rfhnr4yjn57u57r4nyjr4fyjn";
+require('dotenv').config();
+
 
 function authenticateToken(req, res, next) {
   // Get the token from the request headers
@@ -12,7 +13,7 @@ function authenticateToken(req, res, next) {
 
   try {
     // Verify the token
-    const decoded = jwt.verify(token, JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     // Attach the user ID to the request for future route handling
     req.userId = decoded.userId;
