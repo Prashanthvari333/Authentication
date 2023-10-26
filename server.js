@@ -7,7 +7,7 @@ const app = express();
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
-const connection= mongoose.connect("mongodb+srv://prashu2001:prashu2001@userauth.yrbyfkq.mongodb.net/?retryWrites=true&w=majority")
+const connection= mongoose.connect(process.env.MONGO_URL)
 connection.then(()=>console.log("conntected"))
 .catch(()=>{console.log("error in connecting mongo");})
 
